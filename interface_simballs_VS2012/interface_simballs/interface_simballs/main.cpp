@@ -97,8 +97,8 @@ int main(){
 		for (size_t i = 0; i < BUFSIZE; ++i)
 			printf("%.2x", buf[i]);
 
-		tempX = ((buf[20]<<16) | (buf[19]<<8) | (buf[18]));//X coordinate --4188990 to 4194858 (roughly)-- (buf[17] it's important too, but changes too much)
-		tempY = ((buf[12]<<16) | (buf[11]<<8) | (buf[10]) ); //Y coordinate --4189022 to 4194913 (roughly)-- (buf[9] it's important too, but changes too much)
+		tempX = ((buf[20]<<16) | (buf[19]<<8) | (buf[18]));//X coordinate --4194893 to 4188957  (roughly)-- (buf[17] it's important too, but changes too much)
+		tempY = ((buf[12]<<16) | (buf[11]<<8) | (buf[10]) ); //Y coordinate --418880 to 4194943 (roughly)-- (buf[9] it's important too, but changes too much)
 		tempZ = buf[36]; //Z coordinate --from 5 to 62--((buf[35]) it's important too, but changes too much)
 		//tempTrigger = ((buf[32]<<16) | (buf[31]<<8) | (buf[30])); //buf[32]buf[31] scissors
 		scissors=((buf[32]<<8) | (buf[31])); //--from 64 to 654-- growing=closing; decreasing=opening;
