@@ -9,65 +9,15 @@ using namespace std;
 #define SYMBALL_VENDOR_ID 7330
 #define SYMBALL_PRODUCT_ID 1
 
-int main(){
-	
-	//****************************************
-	//***********device inicialization********
-	//****************************************
-	
-	struct hid_device_info *device, *current_device;
-	// device = hid_enumerate(1118,673); //numbers corresponding to the xbox controller 
-	//when we write these numbers we only see the xbox device
-	//device = hid_enumerate(7330, 1);    //symballs ID
-	device = hid_enumerate(0x00,0x00);     //when we write (0,0) we see all devices
-	current_device = device;
-
-	int i;
-	i = 1;
-
-	if (current_device != NULL){
-		do{
-			char *path_info;
-			path_info = current_device->path;
-
-			unsigned short IDvendor;
-			IDvendor = current_device->vendor_id;
-
-			unsigned short IDproduct;
-			IDproduct = current_device->product_id;
-
-			wchar_t *ser_num;
-			ser_num = current_device->serial_number;
 
 
-			wchar_t *product;
-			product = current_device->product_string;
 
-			cout << "Device number: " << endl ;
-			cout << i <<endl;
-			cout << "The Vendor ID is: " << endl;
-			cout << IDvendor <<endl;
-			cout << "The Product ID is: " << endl ;
-			cout << IDproduct << endl;
+//****************************************
+//***********simballs data reading********
+//****************************************
 
-			cout << "Product string is: " << endl;
-			cout << product << endl;
+int simballs_reading(hid_device *read_device){
 
-			cout << "Path:" << endl;
-			cout << path_info << endl;
-
-			current_device = current_device->next;
-			i++;
-		} while (current_device != NULL);
-	}
-
-	hid_free_enumeration(device); //we free enumeration
-
-	hid_device *device2 = hid_open(SYMBALL_VENDOR_ID,SYMBALL_PRODUCT_ID,NULL); //while NULL it will open only the first
-
-	//****************************************
-	//***********simballs data reading********
-	//****************************************
 
 	const size_t BUFSIZE = 80;
 	unsigned char * buf = new unsigned char[BUFSIZE];
@@ -85,12 +35,18 @@ int main(){
 	unsigned int pedalsOld=0;
 	unsigned int scissorsOld=0;
 
+
+
+	hid_read(read_device, buf, BUFSIZE);
+
+
+
 	for (unsigned n = 0;  n < 10000 ; ++n) {
 		// buff clear
 		for (size_t i = 0; i < BUFSIZE; ++i)
 			buf[i] = 0;
 
-		hid_read(device2, buf, BUFSIZE);
+
 
 		cout << endl;
 		cout << endl;
@@ -135,7 +91,7 @@ int main(){
 		}else if (pedals==3){
 			cout<<"Left plugged both pedals"<<endl;
 		}
-		
+
 		// testing byte
 		int tmp=buf[6];
 		cout<<tmp<<endl;
@@ -148,7 +104,7 @@ int main(){
 		signed int scissorsDif=scissors-scissorsOld;
 		unsigned long tempRotationDif=tempRotation-tempRotationOld;
 		unsigned long quarterDif=quarter-quarterOld;
-		
+
 		//except scissors, it's only testing
 		cout<<endl;
 		cout<<"Difference with last: "<<endl;
@@ -187,7 +143,97 @@ int main(){
 		scissorsOld=scissors;
 	}
 
+	return 0;
 
+}
+
+
+
+
+int main(){
+
+	//****************************************
+	//***********device inicialization********
+	//****************************************
+
+	struct hid_device_info *device, *current_device;
+	//hid_device *handle1,*handle2,*handle3;
+	hid_device *handle[3] = {NULL, NULL, NULL};
+	// device = hid_enumerate(1118,673); //numbers corresponding to the xbox controller 
+	//when we write these numbers we only see the xbox device
+	device = hid_enumerate(7330, 1);    //symballs ID
+	//device = hid_enumerate(0x00,0x00);     //when we write (0,0) we see all devices
+	current_device = device;
+
+	int i;
+	i = 1;
+
+	if (current_device != NULL){
+		do{
+			char *path_info;
+			path_info = current_device->path;
+
+			unsigned short IDvendor;
+			IDvendor = current_device->vendor_id;
+
+			unsigned short IDproduct;
+			IDproduct = current_device->product_id;
+
+			wchar_t *ser_num;
+			ser_num = current_device->serial_number;
+
+
+			wchar_t *product;
+			product = current_device->product_string;
+
+			cout << "Device number: " << endl ;
+			cout << i <<endl;
+			cout << "The Vendor ID is: " << endl;
+			cout << IDvendor <<endl;
+			cout << "The Product ID is: " << endl ;
+			cout << IDproduct << endl;
+
+			cout << "Product string is: " << endl;
+			cout << product << endl;
+
+			cout << "Path:" << endl;
+			cout << path_info << endl;
+
+			if (current_device != NULL) {
+				handle[i-1]=hid_open_path(current_device->path);
+				current_device = current_device->next;	
+			}
+			/*if(i==1){
+				handle1=hid_open_path(current_device->path);
+			}
+			if(i==2){
+				handle2=hid_open_path(current_device->path);
+			}
+			if(i==3){
+				handle3=hid_open_path(current_device->path);
+			}*/
+
+
+			i++;
+		} while (current_device != NULL);
+	}
+
+	
+
+	//hid_device *device2 = hid_open(SYMBALL_VENDOR_ID,SYMBALL_PRODUCT_ID,NULL); //while NULL it will open only the first
+
+
+	//data reading
+
+	for(int index=1;index<=3;index++){
+		if (handle[index-1] != NULL) {
+			cout << "fsdfsdfgs";
+			simballs_reading(handle[index-1]);
+		}
+	}
+
+
+	hid_free_enumeration(device); //we free enumeration
 	//pause to see the command window
 	cout << "Press enter" << endl;
 	int in;
