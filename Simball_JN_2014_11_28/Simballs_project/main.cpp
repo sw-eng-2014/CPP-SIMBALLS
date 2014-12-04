@@ -28,7 +28,8 @@ int main(){
 //		num_res=simball.ReadSimBallRawTech(0,1,100);
 //	}  
 //--------------------------------------------------------------------------
-		for ( i = 0;  i < 1000000 ; ++i) {
+	//showing the information	
+	for ( i = 0;  i < 1000000 ; ++i) {
 			simball_Left.ReadSimBallState(simball.handle[1]);
 			cout << simball.handle[1] << " "<< int (simball_Left.AYaw);
 		    cout << " " << int (simball_Left.APitch);
@@ -36,6 +37,7 @@ int main(){
 			cout << " " << simball_Left.ARotation;
 		   	cout << " " << simball_Left.AGrip ;
 		   	cout << " " << simball_Left.APedals ;
+			cout << "   " ;
 	      //----------------------------------------------------
 			simball_Right.ReadSimBallState(simball.handle[2]);
 		    cout << " " <<simball.handle[2] <<" " << int (simball_Right.AYaw);
@@ -44,6 +46,7 @@ int main(){
 			cout << " " << simball_Right.ARotation;
 		   	cout << " " << simball_Right.AGrip ;
 		 	cout << " " << simball_Left.APedals ;
+			cout << "   " ;
 			//----------------------------------------------------
 			simball_camera.ReadSimBallState(simball.handle[3]);
 		    cout <<" " <<simball.handle[3] << " " << int (simball_camera.AYaw);
