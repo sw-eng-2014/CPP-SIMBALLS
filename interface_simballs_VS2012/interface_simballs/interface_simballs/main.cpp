@@ -105,6 +105,8 @@ int simballs_reading(hid_device *read_device){
 		unsigned long tempRotationDif=tempRotation-tempRotationOld;
 		unsigned long quarterDif=quarter-quarterOld;
 
+		/*
+		
 		//except scissors, it's only testing
 		cout<<endl;
 		cout<<"Difference with last: "<<endl;
@@ -116,12 +118,16 @@ int simballs_reading(hid_device *read_device){
 		cout<<tempZDif<<endl;
 		/*cout<<"Trigger difference: ";
 		cout<<tempTriggerDif<<endl;*/
+
+		/*
 		cout<<"Rotation difference: ";
 		cout<<tempRotationDif<<endl;
 		cout<<"Quarter difference: ";
 		cout<<quarterDif<<endl;
 		cout<<"Scissors difference: ";
 		cout<<scissorsDif<<endl;
+
+		*/
 		if (scissorsDif>0){
 			cout<<"Closing scissors"<<endl;
 		}else if (scissorsDif<0){
@@ -130,6 +136,7 @@ int simballs_reading(hid_device *read_device){
 			cout<<"Not moving scissors"<<endl;
 		}
 
+		
 
 		Sleep(600);
 
@@ -202,6 +209,7 @@ int main(){
 			if (current_device != NULL) {
 				handle[i-1]=hid_open_path(current_device->path);
 				current_device = current_device->next;	
+				cout << "handle "<< i << " is: " << handle[i] <<endl;
 			}
 			/*if(i==1){
 				handle1=hid_open_path(current_device->path);

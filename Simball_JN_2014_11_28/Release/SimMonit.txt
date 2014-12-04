@@ -1,0 +1,56 @@
+
+ Simbale  ---------------
+path    \\?\hid#vid_04b4&pid_0060&mi_01#8&2e1d4418&0&0000#{4d1e55b2-f16f-11cf-88cb-001111000030}
+
+
+product ID 96 vendor ID 1204 release No 1
+
+usage page 65298
+usage 1
+char _
+numer 1
+serial No 	
+produkt U
+wytworca A
+
+ Simbale  ---------------
+path    \\?\hid#vid_04b4&pid_0060&mi_01#8&2e1d4418&0&0000#{4d1e55b2-f16f-11cf-88cb-001111000030}
+
+
+product ID 96 vendor ID 1204 release No 1
+
+usage page 65298
+usage 1
+char _
+numer 1
+serial No 	
+produkt U
+wytworca A
+
+ Simbale  ---------------
+path    \\?\hid#vid_04b4&pid_0060&mi_01#8&2e1d4418&0&0000#{4d1e55b2-f16f-11cf-88cb-001111000030}
+
+
+product ID 96 vendor ID 1204 release No 1
+
+usage page 65298
+usage 1
+char _
+numer 1
+serial No 	
+produkt U
+wytworca A
+
+ Simbale  ---------------
+path    \\?\hid#vid_04b4&pid_0060&mi_01#8&2e1d4418&0&0000#{4d1e55b2-f16f-11cf-88cb-001111000030}
+
+
+product ID 96 vendor ID 1204 release No 1
+
+usage page 65298
+usage 1
+char _
+numer 1
+serial No 	
+produkt U
+wytworca A
